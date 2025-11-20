@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Showcase{% endblock %}
+
+{% block body %}
+    <h1>Edit Showcase</h1>
+
+    {{ include('showcase/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_showcase_index') }}">back to list</a>
+
+    {{ include('showcase/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Keyboard{% endblock %}
+
+{% block body %}
+    <h1>Create new Keyboard</h1>
+
+    {{ include('keyboard/_form.html.twig') }}
+
+    <a href="{{ path('app_keyboard_index') }}">back to list</a>
+{% endblock %}

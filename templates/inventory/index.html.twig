@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Inventaires{% endblock %}
+
+{% block body %}
+    <div class="row mb-4 align-items-center">
+        <div class="col">
+            <h1>Tous les Inventaires</h1>
+        </div>
+        {# Optionnel : Bouton pour créer un inventaire si besoin #}
+        {# <div class="col-auto">
+            <a href="{{ path('app_inventory_new') }}" class="btn btn-success">Créer un nouvel inventaire</a>
+        </div> #}
+    </div>
+
+    {% if inventories is empty %}
+        <div class="alert alert-info">
+            Aucun inventaire trouvé pour le moment.
+        </div>
+    {% else %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for inventory in inventories %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {# Si l'inventaire a un membre lié, on affiche son nom/email #}
+                                {% if inventory.member and inventory.member.user %}
+                                    Inventaire de {{ inventory.member.user.email }}
+                                {% else %}
+                                    Inventaire #{{ inventory.id }}
+                                {% endif %}
+                            </h5>
+
+                            <p class="card-text text-muted">
+                                {{ inventory.description|length > 50 ? inventory.description|slice(0, 50) ~ '...' : inventory.description }}
+                            </p>
+
+                            {# Compteur de claviers #}
+                            <p class="small">
+                                <i class="bi bi-keyboard"></i> {{ inventory.keyboards|length }} claviers
+                            </p>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="{{ path('inventory_show', {'id': inventory.id}) }}" class="btn btn-primary btn-sm w-100">
+                                Voir la collection
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

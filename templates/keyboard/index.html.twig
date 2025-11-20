@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Keyboard index{% endblock %}
+
+{% block body %}
+    <h1>Keyboard index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>SwitchType</th>
+                <th>KeycapSet</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for keyboard in keyboards %}
+            <tr>
+                <td>{{ keyboard.id }}</td>
+                <td>{{ keyboard.name }}</td>
+                <td>{{ keyboard.brand }}</td>
+                <td>{{ keyboard.switchType }}</td>
+                <td>{{ keyboard.keycapSet }}</td>
+                <td>{{ keyboard.description }}</td>
+                <td>
+                    <a href="{{ path('app_keyboard_show', {'id': keyboard.id}) }}">show</a>
+                    <a href="{{ path('app_keyboard_edit', {'id': keyboard.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_keyboard_new') }}">Create new</a>
+{% endblock %}

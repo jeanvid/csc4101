@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Showcase : {{ showcase.name }}</h1>
+    <p class="lead">{{ showcase.description }}</p>
+
+    <h2>Keyboards présentés</h2>
+
+    <div class="row">
+        {# Boucle sur la collection Keyboards (relation ManyToMany) #}
+        {% for keyboard in showcase.keyboards %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ keyboard.name }}</h5>
+                        <p class="card-text">{{ keyboard.description|slice(0, 100) }}...</p>
+                        {# Lien vers la page publique du clavier (sera contextualisé à l'étape 12) #}
+                        <a href="{{ path('app_showcase_keyboard_show', {
+                            'showcase_id': showcase.id,
+                            'keyboard_id': keyboard.id
+                        }) }}" class="btn btn-outline-dark">
+                            Voir le détail public
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>Cette Showcase ne contient encore aucun clavier.</p>
+        {% endfor %}
+    </div>
+
+    <a href="{{ path('app_showcase_index') }}">Retour à la liste des Showcases</a>
+    {# ... (Autres liens CRUD générés) ... #}
+{% endblock %}

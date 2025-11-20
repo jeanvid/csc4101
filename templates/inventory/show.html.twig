@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="mb-4">{{ inventory.description }}</h2>
+
+            <div class="row">
+                {% for keyboard in inventory.keyboards %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ keyboard.name }}</h5>
+                                {% if keyboard.brand %}
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ keyboard.brand }}</h6>
+                                {% endif %}
+
+                                {% if keyboard.switchType %}
+                                    <p class="mb-1"><strong>Switches:</strong> {{ keyboard.switchType }}</p>
+                                {% endif %}
+
+                                {% if keyboard.keycapSet %}
+                                    <p class="mb-1"><strong>Keycaps:</strong> {{ keyboard.keycapSet }}</p>
+                                {% endif %}
+
+                                {% if keyboard.description %}
+                                    <p class="card-text mt-2"><small>{{ keyboard.description }}</small></p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-12">
+                        <div class="alert alert-info">Aucun clavier dans cet inventaire</div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <a href="{{ path('inventory_list') }}" class="btn btn-secondary mt-3">← Retour</a>
+        </div>
+    </div>
+{% endblock %}

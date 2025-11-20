@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Inventaires{% endblock %}
+
+{% block body %}
+    <h2>Liste des inventaires</h2>
+
+    <ul>
+        {% for inventory in inventories %}
+            <li>
+                <a href="{{ path('inventory_show', {'id': inventory.id}) }}">
+                    Inventaire #{{ inventory.id }} - {{ inventory.description }}
+                </a>
+            </li>
+        {% else %}
+            <li>Aucun inventaire trouvé</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

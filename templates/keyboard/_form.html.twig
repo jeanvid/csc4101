@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+
+    {# Affiche les erreurs globales s'il y en a #}
+    {{ form_errors(form) }}
+
+    {# Affiche tous les champs (Nom, Marque, et maintenant IMAGE) #}
+    {{ form_widget(form) }}
+
+<button class="btn btn-success">
+    {{ button_label|default('Save') }}
+</button>
+
+{{ form_end(form) }}

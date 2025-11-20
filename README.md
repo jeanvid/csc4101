@@ -1,4 +1,4 @@
-
+Jean VIDAL, projet de bibliothèque de clavier personnalisé (clavier custom) regroupant leurs caractéristiques
 ## Nomenclature du projet
 - Keyboard  : Un clavier mécanique custom (clavier personnalisé)
 - Inventory : L'inventaire personnel d'un membre
@@ -21,3 +21,6 @@
 - name (string) : Nom de la showcase
 - description (text) : Description
 - published (boolean) : Publié ou non
+
+email ; jean@test.com
+password : password
